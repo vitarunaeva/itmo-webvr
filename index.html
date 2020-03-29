@@ -16,52 +16,86 @@
             }
         });
 
-        AFRAME.registerComponent("hotspots", {
+        AFRAME.registerComponent("hotSpots", {
             init: function() {
-                this.el.addEventListener("reloadspots", function(evt) {
-                    //get the entire current spot group and scale it to 0
-                    var currspotgroup = document.getElementById(evt.detail.currspots);
-                    currspotgroup.setAttribute("scale", "0 0 0");
+                this.el.addEventListener("reloadSpots", function(evt) {
+                    let currspotGroup = document.getElementById(evt.detail.currSpots);
+                    currspotGroup.setAttribute("scale", "0 0 0");
 
-                    //get the entire new spot group and scale it to 1
-                    var newspotgroup = document.getElementById(evt.detail.newspots);
-                    newspotgroup.setAttribute("scale", "1 1 1");
+                    let newspotGroup = document.getElementById(evt.detail.newSpots);
+                    newspotGroup.setAttribute("scale", "1 1 1");
                 });
             }
         });
 
         AFRAME.registerComponent("spot", {
             schema: {
-                linkto: { type: "string", default: "" },
-                spotgroup: { type: "string", default: "" }
+                linkTo: { type: "string", default: "" },
+                spotGroup: { type: "string", default: "" }
             },
             init: function() {
-                //add image source of hotspot icon
+                // Добавление источника изображения горячих точек
                 this.el.setAttribute("src", "#hotspot");
-                //make the icon look at the camera all the time
+
+                // Делает иконку, реагирующую на вгляд пользователя
                 this.el.setAttribute("look-at", "#camera");
 
-                var data = this.data;
+                let data = this.data;
 
                 this.el.addEventListener("click", function() {
-                    //set the skybox source to the new image as per the spot
-                    var sky = document.getElementById("skybox");
-                    sky.setAttribute("src", data.linkto);
+                    // Устанавливает новый источник изображения для skyBox
+                    let sky = document.getElementById("skyBox");
+                    sky.setAttribute("src", data.linkTo);
 
-                    var spotcomp = document.getElementById("spots");
-                    var currspots = this.parentElement.getAttribute("id");
-                    //create event for spots component to change the spots data
-                    spotcomp.emit("reloadspots", {
-                        newspots: data.spotgroup,
-                        currspots: currspots
+                    let spotComp = document.getElementById("spots");
+                    let currSpots = this.parentElement.getAttribute("id");
+                    // Создание события на смену отображаемых панораманых изображений
+                    spotComp.emit("reloadSpots", {
+                        newSpots: data.spotGroup,
+                        currSpots: currSpots
                     });
                 });
             }
         });
 
         AFRAME.registerComponent("campus-options", {
-            mouseenter: function(e) {
+            init: function(e) {
+                const ACTIVE_BACKGROUND_COLOR = 'blue';
+                const INACTIVE_BACKGROUND_COLOR = 'white';
+                const childrenArray = Array.prototype.slice.call(this.el.children);
 
+                childrenArray.forEach(item => {
+                    const isActive = item.className.split().includes('active');
+
+                    if (isActive) {
+                        item.setAttribute('material', 'color', ACTIVE_BACKGROUND_COLOR);
+                        const campusRoom = item.getAttribute('data-room-options');
+
+                        setTimeout(() => {
+                            document.getElementById(campusRoom).object3D.visible = true;
+                        }, 0);
+                    }
+
+
+                    item.addEventListener('mouseenter', (event) => {
+                        console.log('event.target', event.target);
+                        if (event.target.className.split().includes('active')) return;
+
+                        const activeElement = childrenArray.find(item => item.className.split().includes('active'));
+                        const ActiveElementRoom = activeElement.getAttribute('data-room-options');
+
+                        activeElement.classList.remove("active");
+                        activeElement.setAttribute('material', 'color', INACTIVE_BACKGROUND_COLOR);
+
+                        document.getElementById(ActiveElementRoom).object3D.visible = false;
+
+                        const campusRoom = event.target.getAttribute('data-room-options');
+
+                        event.target.classList.add('active');
+                        document.getElementById(campusRoom).object3D.visible = true;
+                        event.target.setAttribute('material', 'color', ACTIVE_BACKGROUND_COLOR);
+                    })
+                })
             }
         });
     </script>
@@ -93,56 +127,55 @@
         <!-- Images. -->
         <img
                 id="main-entrance"
-                src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fphoto1.jpg?v=1584288748117"
+                src="./assets/photo1.jpg"
         />
 
         <img
                 id="main-entrance__point2"
-                src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fphoto2.jpg?v=1585343746234"
+                src="./assets/photo2.jpg"
         />
 
         <img
                 id="dining-room"
-                src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fphoto3.jpg?v=1585344157905"
+                src="./assets/photo3.jpg"
         />
 
         <img
                 id="gym"
-                src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fphoto4.jpg?v=1585343763400"
+                src="./assets/photo4.jpg"
         />
 
         <img
                 id="hotspot"
                 width="100"
                 height="100"
-                src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fhotspot.png?v=1585349082486"
+                src=./assets/hotspot.png"
         />
 
         <img
                 id="close-icon"
-                color="white"
-                width="1000"
-                height="1000"
-                src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fcancel-black-18dp%20(1).svg?v=1585511681184"
+                width="100"
+                height="100"
+                src="./assets/cancel-black-18dp%20(1).svg"
         />
     </a-assets>
 
-    <a-entity id="spots" hotspots>
+    <a-entity id="spots" hotSpots>
         <a-entity id="group-point1">
             <a-image
-                    spot="linkto:#main-entrance__point2;spotgroup:group-point2"
+                    spot="linkTo:#main-entrance__point2;spotGroup:group-point2"
                     position="2.5 -2 -9"
             ></a-image>
         </a-entity>
         <a-entity id="group-point2" scale="0 0 0">
             <a-image
-                    spot="linkto:#main-entrance;spotgroup:group-point2"
+                    spot="linkTo:#main-entrance;spotGroup:group-point2"
                     position="2.5 -2 -9"
             ></a-image>
         </a-entity>
     </a-entity>
 
-    <a-sky id="skybox" radius="10" src="#main-entrance"></a-sky>
+    <a-sky id="skyBox" radius="10" src="#main-entrance"></a-sky>
 
     <!--Кнопка Меню-->
     <a-entity
@@ -173,7 +206,11 @@
             material="color: #808080; opacity: 0.9"
             geometry="primitive: plane; width: 3; height: 2.4"
     >
-        <a-image id="close" src="#close-icon" color="white" position="1.2 1 0"></a-image>
+        <a-entity id="soundboxingButton"
+                  geometry="primitive: plane; buffer: false; width: 0.2; height: 0.2"
+                  position="2.2 1 0.1"
+                  material="shader: flat; transparent: true; src: #close-icon">
+        </a-entity>
 
         <a-entity id="campus">
             <a-text
@@ -186,10 +223,13 @@
             ></a-text>
             <a-entity campus-options id="campus-options" position="-0.7 0 0">
                 <a-entity
+                        campus
                         id="campus1"
                         mixin="button"
+                        class="active"
                         radius="5"
                         position="0 0.5 0.1"
+                        data-room-options="room-options1"
                 >
                     <a-text
                             value="Main Campus"
@@ -200,7 +240,7 @@
                     ></a-text>
                 </a-entity>
 
-                <a-entity id="campus2" mixin="button" radius="5" position="0 0 0.1">
+                <a-entity campus id="campus2" mixin="button" radius="5" position="0 0 0.1" data-room-options="room-options2">
                     <a-text
                             value="Campus2"
                             mixin="text"
@@ -211,10 +251,12 @@
                 </a-entity>
 
                 <a-entity
+                        campus
                         id="campus3"
                         mixin="button"
                         radius="5"
                         position="0 -0.5 0.1"
+                        data-room-options="room-options3"
                 >
                     <a-text
                             value="Campus3"
@@ -236,7 +278,8 @@
                     wrap-count="30"
                     color="black"
             ></a-text>
-            <a-entity id="room-options" position="0.7 0 0" visible>
+
+            <a-entity id="room-options1" position="0.7 0 0" visible="false">
                 <a-entity id="room1" mixin="button" radius="5" position="0 0.5 0.1">
                     <a-text
                             value="Room1"
@@ -272,21 +315,95 @@
                     ></a-text>
                 </a-entity>
             </a-entity>
+
+            <a-entity id="room-options2" position="0.7 0 0" visible="false">
+                <a-entity id="room21" mixin="button" radius="5" position="0 0.5 0.1">
+                    <a-text
+                            value="Room21"
+                            mixin="text"
+                            position="0 0 0"
+                            wrap-count="80"
+                            color="#EC0B43"
+                    ></a-text>
+                </a-entity>
+
+                <a-entity id="room22" mixin="button" radius="5" position="0 0 0.1">
+                    <a-text
+                            value="Room22"
+                            mixin="text"
+                            position="0 0 0"
+                            wrap-count="80"
+                            color="#EC0B43"
+                    ></a-text>
+                </a-entity>
+
+                <a-entity
+                        id="room23"
+                        mixin="button"
+                        radius="5"
+                        position="0 -0.5 0.1"
+                >
+                    <a-text
+                            value="Room23"
+                            mixin="text"
+                            position="0 0 0"
+                            wrap-count="80"
+                            color="#EC0B43"
+                    ></a-text>
+                </a-entity>
+            </a-entity>
+
+            <a-entity id="room-options3" position="0.7 0 0" visible="false">
+                <a-entity id="room31" mixin="button" radius="5" position="0 0.5 0.1">
+                    <a-text
+                            value="Room31"
+                            mixin="text"
+                            position="0 0 0"
+                            wrap-count="80"
+                            color="#EC0B43"
+                    ></a-text>
+                </a-entity>
+
+                <a-entity id="room32" mixin="button" radius="5" position="0 0 0.1">
+                    <a-text
+                            value="Room32"
+                            mixin="text"
+                            position="0 0 0"
+                            wrap-count="80"
+                            color="#EC0B43"
+                    ></a-text>
+                </a-entity>
+
+                <a-entity
+                        id="room33"
+                        mixin="button"
+                        radius="5"
+                        position="0 -0.5 0.1"
+                >
+                    <a-text
+                            value="Room33"
+                            mixin="text"
+                            position="0 0 0"
+                            wrap-count="80"
+                            color="#EC0B43"
+                    ></a-text>
+                </a-entity>
+            </a-entity>
         </a-entity>
     </a-entity>
 
     <!--Камера-->
-    <!--       <a-entity id="camera" camera position="0 -3 0" look-controls>
-      <a-entity
-        cursor="fuse:true;fuseTimeout:2000"
-        geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.02"
-        position="0 0 -1.8"
-        animation__mouseenter="property:scale;to:3 3 3;startEvents:mouseenter;endEvents:mouseleave;dir:reverse;dur:2000;loop:1"
-      >
-      </a-entity>
-    </a-entity> -->
+    <!— <a-entity id="camera" camera position="0 -3 0" look-controls>
+    <a-entity
+            cursor="fuse:true;fuseTimeout:2000"
+            geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.02"
+            position="0 0 -1.8"
+            animation__mouseenter="property:scale;to:3 3 3;startEvents:mouseenter;endEvents:mouseleave;dir:reverse;dur:2000;loop:1"
+    >
+    </a-entity>
+</a-entity> —>
 
-    <!-- Camera + Cursor. -->
+    <!— Camera + Cursor. —>
     <a-camera position="0 -3 0" look-controls>
         <a-cursor
                 id="cursor"
@@ -297,5 +414,5 @@
     </a-camera>
 </a-scene>
 </body>
-
 </html>
+
