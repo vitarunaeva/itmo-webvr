@@ -112,92 +112,68 @@
 <body>
 <a-scene>
     <a-assets>
-        <a-mixin
-                id="text"
+        <a-mixin id="text"
                 text="align: center; width: 6"
-                material="color: #EC0B43"
-        ></a-mixin>
+                material="color: #EC0B43">
+        </a-mixin>
 
-        <a-mixin
-                id="button"
+        <a-mixin id="button"
                 geometry="primitive: plane; width: 1; height: 0.35"
-                material="color: white"
-        ></a-mixin>
-        <audio
-                id="click-sound"
-                src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"
-        ></audio>
+                material="color: white">
+        </a-mixin>
+        <audio id="click-sound"
+                src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg">
+        </audio>
 
-        <audio
-                id="hover-sound"
-                src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fhover.ogg?v=1585432296309"
-        ></audio>
+        <audio  id="hover-sound"
+                src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fhover.ogg?v=1585432296309">
+        </audio>
 
         <!-- Images. -->
-        <img
-                id="main-entrance"
-                src="./assets/photo1.jpg"
-        />
+        <img id="main-entrance" src="./assets/photo1.jpg" />
 
-        <img
-                id="main-entrance__point2"
-                src="./assets/photo2.jpg"
-        />
+        <img  id="main-entrance__point2" src="./assets/photo2.jpg" />
 
-        <img
-                id="dining-room"
-                src="./assets/photo3.jpg"
-        />
+        <img id="dining-room" src="./assets/photo3.jpg" />
 
-        <img
-                id="gym"
-                src="./assets/photo4.jpg"
-        />
+        <img id="gym" src="./assets/photo4.jpg" />
 
-        <img
-                id="hotspot"
-                width="100"
-                height="100"
-                src="./assets/hotspot.png"
-        />
+        <img id="hotspot"
+             width="100"
+             height="100"
+             src="./assets/hotspot.png" />
 
-        <img
-                id="close-icon"
-                width="100"
-                height="100"
-                src="./assets/cancel-black-18dp%20(1).svg"
-        />
+        <img id="close-icon"
+             width="100"
+             height="100"
+             src="./assets/cancel-black-18dp%20(1).svg" />
     </a-assets>
 
     <a-entity id="spots" hotSpots>
         <a-entity id="group-point1">
-            <a-image
-                    spot="linkTo:#main-entrance__point2;spotGroup:group-point2"
-                    position="2.5 -2 -9"
-            ></a-image>
+            <a-image spot="linkTo:#main-entrance__point2;spotGroup:group-point2"
+                     position="2.5 -2 -9">
+            </a-image>
         </a-entity>
         <a-entity id="group-point2" scale="0 0 0">
-            <a-image
-                    spot="linkTo:#main-entrance;spotGroup:group-point2"
-                    position="2.5 -2 -9"
-            ></a-image>
+            <a-image spot="linkTo:#main-entrance;spotGroup:group-point2"
+                     position="2.5 -2 -9">
+            </a-image>
         </a-entity>
     </a-entity>
 
     <a-sky id="skyBox" radius="10" src="#main-entrance"></a-sky>
 
     <!--Кнопка Меню-->
-    <a-entity
-            look-at
-            menubutton
-            id="menu-button"
-            geometry="primitive: plane; width: 1; height: 0.35"
-            render-order="menu"
-            depth="1"
-            position="0 -1.5 -3"
-            material="color: red"
-            src="#menu"
-    >
+    <a-entity look-at
+              menubutton
+              id="menu-button"
+              geometry="primitive: plane; width: 1; height: 0.35"
+              render-order="menu"
+              depth="1"
+              position="0 -1.5 -3"
+              material="color: red"
+              src="#menu">
         <a-text id="menu-button-label" value="меню2" position="-0.3 0 0">
         </a-text>
 
@@ -207,14 +183,12 @@
     </a-entity>
 
     <!--Меню-->
-    <a-entity
-            scale="0 0 0"
-            id="menu"
-            position="0 -3 -2"
-            depth="2"
-            material="color: #808080; opacity: 0.9"
-            geometry="primitive: plane; width: 3; height: 2.4"
-    >
+    <a-entity scale="0 0 0"
+              id="menu"
+              position="0 -3 -2"
+              depth="2"
+              material="color: #808080; opacity: 0.9"
+              geometry="primitive: plane; width: 3; height: 2.4">
         <a-entity id="closeButton"
                   closebutton
                   geometry="primitive: plane; buffer: false; width: 0.2; height: 0.2"
@@ -223,26 +197,22 @@
         </a-entity>
 
         <a-entity id="campus">
-            <a-text
-                    id="campus-label"
+            <a-text id="campus-label"
                     mixin="text"
                     value="Campus"
                     position="-1 0.9 0"
                     wrap-count="30"
-                    color="black"
-            ></a-text>
+                    color="black">
+            </a-text>
             <a-entity campus-options id="campus-options" position="-0.7 0 0">
-                <a-entity
-                        campus
-                        id="campus1"
-                        mixin="button"
-                        class="active"
-                        radius="5"
-                        position="0 0.5 0.1"
-                        data-room-options="room-options1"
-                >
-                    <a-text
-                            value="Main Campus"
+                <a-entity campus
+                          id="campus1"
+                          mixin="button"
+                          class="active"
+                          radius="5"
+                          position="0 0.5 0.1"
+                          data-room-options="room-options1">
+                    <a-text value="Main Campus"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
@@ -251,176 +221,155 @@
                 </a-entity>
 
                 <a-entity campus id="campus2" mixin="button" radius="5" position="0 0 0.1" data-room-options="room-options2">
-                    <a-text
-                            value="Campus2"
+                    <a-text value="Campus2"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
-                            color="#EC0B43"
-                    ></a-text>
+                            color="#EC0B43">
+                    </a-text>
                 </a-entity>
 
-                <a-entity
-                        campus
-                        id="campus3"
-                        mixin="button"
-                        radius="5"
-                        position="0 -0.5 0.1"
-                        data-room-options="room-options3"
-                >
-                    <a-text
-                            value="Campus3"
+                <a-entity campus
+                          id="campus3"
+                          mixin="button"
+                          radius="5"
+                          position="0 -0.5 0.1"
+                          data-room-options="room-options3">
+                    <a-text value="Campus3"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
-                            color="#EC0B43"
-                    ></a-text>
+                            color="#EC0B43">
+                    </a-text>
                 </a-entity>
             </a-entity>
         </a-entity>
 
         <a-entity id="room">
-            <a-text
-                    id="room-label"
+            <a-text id="room-label"
                     mixin="text"
                     value="Room"
                     position="1 0.9 0"
                     wrap-count="30"
-                    color="black"
-            ></a-text>
+                    color="black">
+            </a-text>
 
             <a-entity id="room-options1" position="0.7 0 0" visible="false">
                 <a-entity id="room1" mixin="button" radius="5" position="0 0.5 0.1">
-                    <a-text
-                            value="Room1"
+                    <a-text value="Room1"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
-                            color="#EC0B43"
-                    ></a-text>
+                            color="#EC0B43">
+                    </a-text>
                 </a-entity>
 
                 <a-entity id="room2" mixin="button" radius="5" position="0 0 0.1">
-                    <a-text
-                            value="Room2"
+                    <a-text value="Room2"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
-                            color="#EC0B43"
-                    ></a-text>
+                            color="#EC0B43">
+                    </a-text>
                 </a-entity>
 
-                <a-entity
-                        id="room3"
-                        mixin="button"
-                        radius="5"
-                        position="0 -0.5 0.1"
-                >
-                    <a-text
-                            value="Room3"
+                <a-entity id="room3"
+                          mixin="button"
+                          radius="5"
+                          position="0 -0.5 0.1">
+                    <a-text value="Room3"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
-                            color="#EC0B43"
-                    ></a-text>
+                            color="#EC0B43">
+                    </a-text>
                 </a-entity>
             </a-entity>
 
             <a-entity id="room-options2" position="0.7 0 0" visible="false">
                 <a-entity id="room21" mixin="button" radius="5" position="0 0.5 0.1">
-                    <a-text
-                            value="Room21"
+                    <a-text value="Room21"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
-                            color="#EC0B43"
-                    ></a-text>
+                            color="#EC0B43">
+                    </a-text>
                 </a-entity>
 
                 <a-entity id="room22" mixin="button" radius="5" position="0 0 0.1">
-                    <a-text
-                            value="Room22"
-                            mixin="text"
-                            position="0 0 0"
-                            wrap-count="80"
-                            color="#EC0B43"
-                    ></a-text>
+                    <a-text   value="Room22"
+                              mixin="text"
+                              position="0 0 0"
+                              wrap-count="80"
+                              color="#EC0B43">
+                    </a-text>
                 </a-entity>
 
-                <a-entity
-                        id="room23"
-                        mixin="button"
-                        radius="5"
-                        position="0 -0.5 0.1"
-                >
-                    <a-text
-                            value="Room23"
+                <a-entity id="room23"
+                          mixin="button"
+                          radius="5"
+                          position="0 -0.5 0.1">
+                    <a-text value="Room23"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
-                            color="#EC0B43"
-                    ></a-text>
+                            color="#EC0B43">
+                    </a-text>
                 </a-entity>
             </a-entity>
 
             <a-entity id="room-options3" position="0.7 0 0" visible="false">
                 <a-entity id="room31" mixin="button" radius="5" position="0 0.5 0.1">
-                    <a-text
-                            value="Room31"
+                    <a-text value="Room31"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
-                            color="#EC0B43"
-                    ></a-text>
+                            color="#EC0B43">
+                    </a-text>
                 </a-entity>
 
                 <a-entity id="room32" mixin="button" radius="5" position="0 0 0.1">
-                    <a-text
-                            value="Room32"
+                    <a-text value="Room32"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
-                            color="#EC0B43"
-                    ></a-text>
+                            color="#EC0B43">
+                    </a-text>
                 </a-entity>
 
-                <a-entity
-                        id="room33"
-                        mixin="button"
-                        radius="5"
-                        position="0 -0.5 0.1"
-                >
-                    <a-text
-                            value="Room33"
+                <a-entity id="room33"
+                          mixin="button"
+                          radius="5"
+                          position="0 -0.5 0.1">
+                    <a-text value="Room33"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
-                            color="#EC0B43"
-                    ></a-text>
+                            color="#EC0B43">
+                    </a-text>
                 </a-entity>
             </a-entity>
         </a-entity>
     </a-entity>
 
     <!--Камера-->
-    <!— <a-entity id="camera" camera position="0 -3 0" look-controls>
-    <a-entity
-            cursor="fuse:true;fuseTimeout:2000"
-            geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.02"
-            position="0 0 -1.8"
-            animation__mouseenter="property:scale;to:3 3 3;startEvents:mouseenter;endEvents:mouseleave;dir:reverse;dur:2000;loop:1"
-    >
-    </a-entity>
-</a-entity> —>
+    <!--    <a-entity id="camera" camera position="0 -3 0" look-controls>-->
+    <!--        <a-entity-->
+    <!--                cursor="fuse:true;fuseTimeout:2000"-->
+    <!--                geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.02"-->
+    <!--                position="0 0 -1.8"-->
+    <!--                animation__mouseenter="property:scale;to:3 3 3;startEvents:mouseenter;endEvents:mouseleave;dir:reverse;dur:2000;loop:1"-->
+    <!--        >-->
+    <!--        </a-entity>-->
+    <!--    </a-entity>-->
 
-    <!— Camera + Cursor. —>
+
     <a-camera position="0 -3 0" look-controls>
-        <a-cursor
-                id="cursor"
-                animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
-                animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
-                animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"
-        ></a-cursor>
+        <a-cursor id="cursor"
+                  animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
+                  animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
+                  animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing">
+        </a-cursor>
     </a-camera>
 </a-scene>
 </body>
