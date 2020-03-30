@@ -6,108 +6,12 @@
     <!--animation component script-->
     <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
-    <script>
-        AFRAME.registerComponent("menubutton", {
-            events: {
-                mouseenter: function() {
-                    this.el.setAttribute("scale", "0 0 0");
-                    document.querySelector("#menu").setAttribute("scale", "1 1 1");
-                }
-            }
-        });
 
-        AFRAME.registerComponent("closebutton", {
-            events: {
-                mouseenter: function() {
-                    document.querySelector("#menu").setAttribute("scale", "0 0 0");
-                    document.querySelector("#menu-button").setAttribute("scale", "1 1 1");
-                }
-            }
-        });
-
-        AFRAME.registerComponent("hotSpots", {
-            init: function() {
-                this.el.addEventListener("reloadSpots", function(evt) {
-                    let currspotGroup = document.getElementById(evt.detail.currSpots);
-                    currspotGroup.setAttribute("scale", "0 0 0");
-
-                    let newspotGroup = document.getElementById(evt.detail.newSpots);
-                    newspotGroup.setAttribute("scale", "1 1 1");
-                });
-            }
-        });
-
-        AFRAME.registerComponent("spot", {
-            schema: {
-                linkTo: { type: "string", default: "" },
-                spotGroup: { type: "string", default: "" }
-            },
-            init: function() {
-                // Добавление источника изображения горячих точек
-                this.el.setAttribute("src", "#hotspot");
-
-                // Делает иконку, реагирующую на вгляд пользователя
-                this.el.setAttribute("look-at", "#camera");
-
-                let data = this.data;
-
-                this.el.addEventListener("click", function() {
-                    // Устанавливает новый источник изображения для skyBox
-                    let sky = document.getElementById("skyBox");
-                    sky.setAttribute("src", data.linkTo);
-
-                    let spotComp = document.getElementById("spots");
-                    let currSpots = this.parentElement.getAttribute("id");
-                    // Создание события на смену отображаемых панораманых изображений
-                    spotComp.emit("reloadSpots", {
-                        newSpots: data.spotGroup,
-                        currSpots: currSpots
-                    });
-                });
-            }
-        });
-
-        AFRAME.registerComponent("campus-options", {
-            init: function(e) {
-                const ACTIVE_BACKGROUND_COLOR = 'blue';
-                const INACTIVE_BACKGROUND_COLOR = 'white';
-                const childrenArray = Array.prototype.slice.call(this.el.children);
-
-                childrenArray.forEach(item => {
-                    const isActive = item.className.split().includes('active');
-
-                    if (isActive) {
-                        item.setAttribute('material', 'color', ACTIVE_BACKGROUND_COLOR);
-                        const campusRoom = item.getAttribute('data-room-options');
-
-                        setTimeout(() => {
-                            document.getElementById(campusRoom).object3D.visible = true;
-                        }, 0);
-                    }
-
-
-                    item.addEventListener('mouseenter', (event) => {
-                        console.log('event.target', event.target);
-                        if (event.target.className.split().includes('active')) return;
-
-                        const activeElement = childrenArray.find(item => item.className.split().includes('active'));
-                        const ActiveElementRoom = activeElement.getAttribute('data-room-options');
-
-                        activeElement.classList.remove("active");
-                        activeElement.setAttribute('material', 'color', INACTIVE_BACKGROUND_COLOR);
-
-                        document.getElementById(ActiveElementRoom).object3D.visible = false;
-
-                        const campusRoom = event.target.getAttribute('data-room-options');
-
-                        event.target.classList.add('active');
-                        document.getElementById(campusRoom).object3D.visible = true;
-                        event.target.setAttribute('material', 'color', ACTIVE_BACKGROUND_COLOR);
-                    })
-                })
-            }
-        });
-    </script>
+    <script src="src/components/menu-button.js"></script>
+    <script src="src/components/close-button.js"></script>
+    <script src="src/components/hotspots.js"></script>
+    <script src="src/components/spot.js"></script>
+    <script src="src/components/campus-options.js"></script>
 </head>
 <body>
 <a-scene>
@@ -352,25 +256,13 @@
         </a-entity>
     </a-entity>
 
-    <!--Камера-->
-    <!--    <a-entity id="camera" camera position="0 -3 0" look-controls>-->
-    <!--        <a-entity-->
-    <!--                cursor="fuse:true;fuseTimeout:2000"-->
-    <!--                geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.02"-->
-    <!--                position="0 0 -1.8"-->
-    <!--                animation__mouseenter="property:scale;to:3 3 3;startEvents:mouseenter;endEvents:mouseleave;dir:reverse;dur:2000;loop:1"-->
-    <!--        >-->
-    <!--        </a-entity>-->
-    <!--    </a-entity>-->
-
-
-    <a-camera position="0 -3 0" look-controls>
-        <a-cursor id="cursor"
-                  animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
-                  animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
-                  animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing">
-        </a-cursor>
-    </a-camera>
+    <a-entity camera look-controls position="0 -3 0">
+      <a-entity cursor="fuse: true; fuseTimeout: 500;"
+                position="0 0 -1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                material="color: black; shader: flat">
+      </a-entity>
+    </a-entity>
 </a-scene>
 </body>
 </html>
