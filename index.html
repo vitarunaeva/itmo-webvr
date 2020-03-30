@@ -16,6 +16,15 @@
             }
         });
 
+        AFRAME.registerComponent("closebutton", {
+            events: {
+                mouseenter: function() {
+                    document.querySelector("#menu").setAttribute("scale", "0 0 0");
+                    document.querySelector("#menu-button").setAttribute("scale", "1 1 1");
+                }
+            }
+        });
+
         AFRAME.registerComponent("hotSpots", {
             init: function() {
                 this.el.addEventListener("reloadSpots", function(evt) {
@@ -149,7 +158,7 @@
                 id="hotspot"
                 width="100"
                 height="100"
-                src=./assets/hotspot.png"
+                src="./assets/hotspot.png"
         />
 
         <img
@@ -199,14 +208,15 @@
 
     <!--Меню-->
     <a-entity
-            scale="1 1 1"
+            scale="0 0 0"
             id="menu"
             position="0 -3 -2"
             depth="2"
             material="color: #808080; opacity: 0.9"
             geometry="primitive: plane; width: 3; height: 2.4"
     >
-        <a-entity id="soundboxingButton"
+        <a-entity id="closeButton"
+                  closebutton
                   geometry="primitive: plane; buffer: false; width: 0.2; height: 0.2"
                   position="2.2 1 0.1"
                   material="shader: flat; transparent: true; src: #close-icon">
