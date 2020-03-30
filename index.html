@@ -25,6 +25,10 @@
                 geometry="primitive: plane; width: 1; height: 0.35"
                 material="color: white">
         </a-mixin>
+
+        <a-mixin id="hoverColor" event-set__mouseenter="material.color: #CC435F"></a-mixin>
+        <a-mixin id="selectColor" event-set__click="material.color: #876A96"></a-mixin>
+
         <audio id="click-sound"
                 src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg">
         </audio>
@@ -72,12 +76,9 @@
     <a-entity look-at
               menubutton
               id="menu-button"
-              geometry="primitive: plane; width: 1; height: 0.35"
-              render-order="menu"
-              depth="1"
               position="0 -1.5 -3"
-              material="color: red"
-              src="#menu">
+              material="color: #ec0b43"
+              mixin="button hoverColor selectColor">
         <a-text id="menu-button-label" value="меню2" position="-0.3 0 0">
         </a-text>
 
@@ -89,10 +90,9 @@
     <!--Меню-->
     <a-entity scale="0 0 0"
               id="menu"
-              position="0 -3 -2"
-              depth="2"
+              position="0 -3 -1.8"
               material="color: #808080; opacity: 0.9"
-              geometry="primitive: plane; width: 3; height: 2.4">
+              geometry="primitive: plane; width: 3; height: 2.3">
         <a-entity id="closeButton"
                   closebutton
                   geometry="primitive: plane; buffer: false; width: 0.2; height: 0.2"
@@ -104,8 +104,8 @@
             <a-text id="campus-label"
                     mixin="text"
                     value="Campus"
-                    position="-1 0.9 0"
-                    wrap-count="30"
+                    position="-0.8 1 0"
+                    wrap-count="52"
                     color="black">
             </a-text>
             <a-entity campus-options id="campus-options" position="-0.7 0 0">
@@ -153,8 +153,8 @@
             <a-text id="room-label"
                     mixin="text"
                     value="Room"
-                    position="1 0.9 0"
-                    wrap-count="30"
+                    position="0.7 1 0"
+                    wrap-count="52"
                     color="black">
             </a-text>
 
