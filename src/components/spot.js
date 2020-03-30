@@ -10,18 +10,17 @@ AFRAME.registerComponent("spot", {
     // Делает иконку, реагирующую на вгляд пользователя
     this.el.setAttribute("look-at", "#camera");
 
-    let data = this.data;
-
-    this.el.addEventListener("click", function() {
-      // Устанавливает новый источник изображения для skyBox
+    this.el.addEventListener("click", (e) => {
       let sky = document.getElementById("skyBox");
-      sky.setAttribute("src", data.linkTo);
-
       let spotComp = document.getElementById("spots");
-      let currSpots = this.parentElement.getAttribute("id");
+      let currSpots = e.target.parentElement.getAttribute("id");
+
+      // Устанавливает новый источник изображения для skyBox
+      sky.setAttribute("src", this.data.linkTo);
+
       // Создание события на смену отображаемых панораманых изображений
       spotComp.emit("reloadSpots", {
-        newSpots: data.spotGroup,
+        newSpots: this.data.spotGroup,
         currSpots: currSpots
       });
     });

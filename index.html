@@ -59,14 +59,10 @@
 
     <a-entity id="spots" hot-spots>
         <a-entity id="group-point1">
-            <a-image spot="linkTo:#main-entrance__point2;spotGroup:group-point2"
-                     position="2.5 -2 -9">
-            </a-image>
+            <a-image spot="linkTo:#main-entrance__point2;spotGroup:group-point2" position="2.5 -2 -9"></a-image>
         </a-entity>
-        <a-entity id="group-point2" scale="0 0 0">
-            <a-image spot="linkTo:#main-entrance;spotGroup:group-point2"
-                     position="2.5 -2 -9">
-            </a-image>
+        <a-entity id="group-point2" visible="false">
+            <a-image spot="linkTo:#main-entrance;spotGroup:group-point2" position="1.5 -2 -9"></a-image>
         </a-entity>
     </a-entity>
 
@@ -159,7 +155,7 @@
             </a-text>
 
             <a-entity id="room-options1" position="0.7 0 0" visible="false">
-                <a-entity id="room1" mixin="button" radius="5" position="0 0.5 0.1" spot="linkTo:#main-entrance__point2;spotGroup:group-point2">
+                <a-entity id="room1" mixin="button" radius="5" position="0 0.5 0.1" spot="linkTo:#main-entrance__point2;">
                     <a-text value="Room1"
                             mixin="text"
                             position="0 0 0"
@@ -168,7 +164,7 @@
                     </a-text>
                 </a-entity>
 
-                <a-entity id="room2" mixin="button" radius="5" position="0 0 0.1" spot="linkTo:#main-entrance;spotGroup:group-point2">
+                <a-entity id="room2" mixin="button" radius="5" position="0 0 0.1" spot="linkTo:#main-entrance;">
                     <a-text value="Room2"
                             mixin="text"
                             position="0 0 0"
@@ -181,7 +177,7 @@
                           mixin="button"
                           radius="5"
                           position="0 -0.5 0.1"
-                          spot="linkTo:#dining-room;spotGroup:group-point2"
+                          spot="linkTo:#dining-room;"
                           >
                     <a-text value="Room3"
                             mixin="text"
@@ -259,7 +255,8 @@
     </a-entity>
 
     <a-entity camera look-controls position="0 -3 0">
-      <a-entity cursor="fuse: true; fuseTimeout: 3000;"
+       <!-- исправить fuseTimeout -->
+      <a-entity cursor="fuse: true; fuseTimeout: 500;"
                 position="0 0 -1"
                 geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
                 material="color: black; shader: flat">
