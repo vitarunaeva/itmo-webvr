@@ -18,10 +18,10 @@ AFRAME.registerComponent("campus-room", {
 
       const campusesArray = Array.prototype.slice.call(document.querySelectorAll('[campus-room]'));
       const activeElement = campusesArray.find(item => item.className.split().includes('active'));
-      const ActiveElementRoom = activeElement.getAttribute('campus-room');
+      const activeElementRoom = activeElement.getAttribute('campus-room');
       const campusRoom = event.target.getAttribute('campus-room');
 
-      document.getElementById(ActiveElementRoom).object3D.visible = false;
+      document.getElementById(activeElementRoom).object3D.visible = false;
       activeElement.classList.remove("active");
       activeElement.setAttribute('material', 'color', INACTIVE_BACKGROUND_COLOR);
 
