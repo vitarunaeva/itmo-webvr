@@ -9,7 +9,7 @@
 
     <script src="src/components/menu-button.js"></script>
     <script src="src/components/close-button.js"></script>
-    <script src="src/components/hotspots.js"></script>
+    <script src="src/components/hot-spots.js"></script>
     <script src="src/components/spot.js"></script>
     <script src="src/components/campus-options.js"></script>
 </head>
@@ -53,7 +53,7 @@
              src="./assets/cancel-black-18dp%20(1).svg" />
     </a-assets>
 
-    <a-entity id="spots" hotSpots>
+    <a-entity id="spots" hot-spots>
         <a-entity id="group-point1">
             <a-image spot="linkTo:#main-entrance__point2;spotGroup:group-point2"
                      position="2.5 -2 -9">
@@ -70,7 +70,7 @@
 
     <!--Кнопка Меню-->
     <a-entity look-at
-              menubutton
+              menu-button
               id="menu-button"
               geometry="primitive: plane; width: 1; height: 0.35"
               render-order="menu"
@@ -94,7 +94,7 @@
               material="color: #808080; opacity: 0.9"
               geometry="primitive: plane; width: 3; height: 2.4">
         <a-entity id="closeButton"
-                  closebutton
+                  close-button
                   geometry="primitive: plane; buffer: false; width: 0.2; height: 0.2"
                   position="2.2 1 0.1"
                   material="shader: flat; transparent: true; src: #close-icon">
@@ -159,7 +159,7 @@
             </a-text>
 
             <a-entity id="room-options1" position="0.7 0 0" visible="false">
-                <a-entity id="room1" mixin="button" radius="5" position="0 0.5 0.1">
+                <a-entity id="room1" mixin="button" radius="5" position="0 0.5 0.1" spot="linkTo:#main-entrance__point2;spotGroup:group-point2">
                     <a-text value="Room1"
                             mixin="text"
                             position="0 0 0"
@@ -168,7 +168,7 @@
                     </a-text>
                 </a-entity>
 
-                <a-entity id="room2" mixin="button" radius="5" position="0 0 0.1">
+                <a-entity id="room2" mixin="button" radius="5" position="0 0 0.1" spot="linkTo:#main-entrance;spotGroup:group-point2">
                     <a-text value="Room2"
                             mixin="text"
                             position="0 0 0"
@@ -180,7 +180,9 @@
                 <a-entity id="room3"
                           mixin="button"
                           radius="5"
-                          position="0 -0.5 0.1">
+                          position="0 -0.5 0.1"
+                          spot="linkTo:#dining-room;spotGroup:group-point2"
+                          >
                     <a-text value="Room3"
                             mixin="text"
                             position="0 0 0"

@@ -1,5 +1,5 @@
 AFRAME.registerComponent("campus-options", {
-  init: function(e) {
+  init: function() {
     const ACTIVE_BACKGROUND_COLOR = 'blue';
     const INACTIVE_BACKGROUND_COLOR = 'white';
     const childrenArray = Array.prototype.slice.call(this.el.children);

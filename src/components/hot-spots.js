@@ -1,4 +1,4 @@
-AFRAME.registerComponent("hotSpots", {
+AFRAME.registerComponent("hot-spots", {
   init: function() {
     this.el.addEventListener("reloadSpots", function(evt) {
       let currspotGroup = document.getElementById(evt.detail.currSpots);

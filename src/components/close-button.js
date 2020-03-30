@@ -1,4 +1,4 @@
-AFRAME.registerComponent("closebutton", {
+AFRAME.registerComponent("close-button", {
   events: {
     click: function() {
       document.querySelector("#menu").setAttribute("scale", "0 0 0");

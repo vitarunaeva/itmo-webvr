@@ -1,4 +1,4 @@
-AFRAME.registerComponent("menubutton", {
+AFRAME.registerComponent("menu-button", {
   events: {
     mouseenter: function() {
       this.el.setAttribute("scale", "0 0 0");
