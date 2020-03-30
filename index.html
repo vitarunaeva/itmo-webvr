@@ -9,9 +9,9 @@
 
     <script src="src/components/menu-button.js"></script>
     <script src="src/components/close-button.js"></script>
-    <script src="src/components/hot-spots.js"></script>
+    <script src="src/components/spots.js"></script>
     <script src="src/components/spot.js"></script>
-    <script src="src/components/campus-options.js"></script>
+    <script src="src/components/campus-room.js"></script>
 </head>
 <body>
 <a-scene>
@@ -57,16 +57,25 @@
              src="./assets/cancel-black-18dp%20(1).svg" />
     </a-assets>
 
-    <a-entity id="spots" hot-spots>
+    <a-sky id="skyBox" radius="10" src="#main-entrance"></a-sky>
+
+    <a-entity camera look-controls position="0 -3 0">
+           <!-- исправить fuseTimeout -->
+          <a-entity cursor="fuse: true; fuseTimeout: 500;"
+                    position="0 0 -1"
+                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                    material="color: black; shader: flat">
+          </a-entity>
+        </a-entity>
+
+    <a-entity id="spots" spots>
         <a-entity id="group-point1">
             <a-image spot="linkTo:#main-entrance__point2;spotGroup:group-point2" position="2.5 -2 -9"></a-image>
         </a-entity>
         <a-entity id="group-point2" visible="false">
-            <a-image spot="linkTo:#main-entrance;spotGroup:group-point2" position="1.5 -2 -9"></a-image>
+            <a-image spot="linkTo:#main-entrance;spotGroup:group-point1" position="1.5 -2 -9"></a-image>
         </a-entity>
     </a-entity>
-
-    <a-sky id="skyBox" radius="10" src="#main-entrance"></a-sky>
 
     <!--Кнопка Меню-->
     <a-entity look-at
@@ -75,12 +84,9 @@
               position="0 -1.5 -3"
               material="color: #ec0b43"
               mixin="button hoverColor selectColor">
-        <a-text id="menu-button-label" value="меню2" position="-0.3 0 0">
-        </a-text>
+        <a-text id="menu-button-label" value="меню2" position="-0.3 0 0"></a-text>
 
-        <a-entity
-                text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Via URL."
-        ></a-entity>
+        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Via URL."></a-entity>
     </a-entity>
 
     <!--Меню-->
@@ -104,14 +110,12 @@
                     wrap-count="52"
                     color="black">
             </a-text>
-            <a-entity campus-options id="campus-options" position="-0.7 0 0">
-                <a-entity campus
-                          id="campus1"
+            <a-entity id="campus-options" position="-0.7 0 0">
+                <a-entity id="1"
                           mixin="button"
                           class="active"
-                          radius="5"
                           position="0 0.5 0.1"
-                          data-room-options="room-options1">
+                          campus-room="room-options1">
                     <a-text value="Main Campus"
                             mixin="text"
                             position="0 0 0"
@@ -120,7 +124,7 @@
                     ></a-text>
                 </a-entity>
 
-                <a-entity campus id="campus2" mixin="button" radius="5" position="0 0 0.1" data-room-options="room-options2">
+                <a-entity id="campus2" mixin="button" position="0 0 0.1" campus-room="room-options2">
                     <a-text value="Campus2"
                             mixin="text"
                             position="0 0 0"
@@ -129,12 +133,10 @@
                     </a-text>
                 </a-entity>
 
-                <a-entity campus
-                          id="campus3"
+                <a-entity id="campus3"
                           mixin="button"
-                          radius="5"
                           position="0 -0.5 0.1"
-                          data-room-options="room-options3">
+                          campus-room="room-options3">
                     <a-text value="Campus3"
                             mixin="text"
                             position="0 0 0"
@@ -155,7 +157,8 @@
             </a-text>
 
             <a-entity id="room-options1" position="0.7 0 0" visible="false">
-                <a-entity id="room1" mixin="button" radius="5" position="0 0.5 0.1" spot="linkTo:#main-entrance__point2;">
+                <a-entity id="room1" mixin="button" position="0 0.5 0.1"
+                 spot="linkTo:#main-entrance__point2; spotGroup:group-point2; currSpots:group-point1">
                     <a-text value="Room1"
                             mixin="text"
                             position="0 0 0"
@@ -164,7 +167,8 @@
                     </a-text>
                 </a-entity>
 
-                <a-entity id="room2" mixin="button" radius="5" position="0 0 0.1" spot="linkTo:#main-entrance;">
+                <a-entity id="room2" mixin="button" position="0 0 0.1"
+                 spot="linkTo:#main-entrance; spotGroup:group-point1; currSpots: group-point2">
                     <a-text value="Room2"
                             mixin="text"
                             position="0 0 0"
@@ -175,7 +179,6 @@
 
                 <a-entity id="room3"
                           mixin="button"
-                          radius="5"
                           position="0 -0.5 0.1"
                           spot="linkTo:#dining-room;"
                           >
@@ -189,7 +192,7 @@
             </a-entity>
 
             <a-entity id="room-options2" position="0.7 0 0" visible="false">
-                <a-entity id="room21" mixin="button" radius="5" position="0 0.5 0.1">
+                <a-entity id="room21" mixin="button" position="0 0.5 0.1">
                     <a-text value="Room21"
                             mixin="text"
                             position="0 0 0"
@@ -198,7 +201,7 @@
                     </a-text>
                 </a-entity>
 
-                <a-entity id="room22" mixin="button" radius="5" position="0 0 0.1">
+                <a-entity id="room22" mixin="button" position="0 0 0.1">
                     <a-text   value="Room22"
                               mixin="text"
                               position="0 0 0"
@@ -209,7 +212,6 @@
 
                 <a-entity id="room23"
                           mixin="button"
-                          radius="5"
                           position="0 -0.5 0.1">
                     <a-text value="Room23"
                             mixin="text"
@@ -221,7 +223,7 @@
             </a-entity>
 
             <a-entity id="room-options3" position="0.7 0 0" visible="false">
-                <a-entity id="room31" mixin="button" radius="5" position="0 0.5 0.1">
+                <a-entity id="room31" mixin="button" position="0 0.5 0.1">
                     <a-text value="Room31"
                             mixin="text"
                             position="0 0 0"
@@ -230,7 +232,7 @@
                     </a-text>
                 </a-entity>
 
-                <a-entity id="room32" mixin="button" radius="5" position="0 0 0.1">
+                <a-entity id="room32" mixin="button" position="0 0 0.1">
                     <a-text value="Room32"
                             mixin="text"
                             position="0 0 0"
@@ -241,7 +243,6 @@
 
                 <a-entity id="room33"
                           mixin="button"
-                          radius="5"
                           position="0 -0.5 0.1">
                     <a-text value="Room33"
                             mixin="text"
@@ -252,15 +253,6 @@
                 </a-entity>
             </a-entity>
         </a-entity>
-    </a-entity>
-
-    <a-entity camera look-controls position="0 -3 0">
-       <!-- исправить fuseTimeout -->
-      <a-entity cursor="fuse: true; fuseTimeout: 500;"
-                position="0 0 -1"
-                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                material="color: black; shader: flat">
-      </a-entity>
     </a-entity>
 </a-scene>
 </body>
