@@ -16,6 +16,11 @@ AFRAME.registerComponent("campus-room", {
     mouseenter: function(event){
       if (event.target.className.split().includes('active')) return;
 
+      Array.prototype.slice.call(document.querySelectorAll('a-entity[spot]')).forEach(el => {
+        el.classList.remove("active");
+        el.setAttribute('material', 'color', INACTIVE_BACKGROUND_COLOR);
+      });
+
       const campusesArray = Array.prototype.slice.call(document.querySelectorAll('[campus-room]'));
       const activeElement = campusesArray.find(item => item.className.split().includes('active'));
       const activeElementRoom = activeElement.getAttribute('campus-room');
