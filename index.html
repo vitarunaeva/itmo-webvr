@@ -72,7 +72,7 @@
         <a-entity id="group-point1">
             <a-image spot="linkTo:#main-entrance__point2;spotGroup:group-point2" position="2.5 -2 -9"></a-image>
         </a-entity>
-        <a-entity id="group-point2" visible="false">
+        <a-entity id="group-point2" scale="0 0 0">
             <a-image spot="linkTo:#main-entrance;spotGroup:group-point1" position="1.5 -2 -9"></a-image>
         </a-entity>
     </a-entity>
@@ -159,7 +159,7 @@
                     color="black">
             </a-text>
 
-            <a-entity id="room-options1" position="0.7 0 0" visible="false">
+            <a-entity id="room-options1" position="0.7 0 0" scale="0 0 0">
                 <a-entity id="room1" mixin="button" position="0 0.5 0.1"
                  spot="linkTo:#main-entrance__point2; spotGroup:group-point2; currSpots:group-point1">
                     <a-text value="Room1"
@@ -183,7 +183,7 @@
                 <a-entity id="room3"
                           mixin="button"
                           position="0 -0.5 0.1"
-                          spot="linkTo:#dining-room;spotGroup:group-point2"
+                          spot="linkTo:#dining-room; spotGroup:group-point2; currSpots: group-point1"
                 >
                     <a-text value="Room3"
                             mixin="text"
@@ -194,7 +194,7 @@
                 </a-entity>
             </a-entity>
 
-            <a-entity id="room-options2" position="0.7 0 0" visible="false">
+            <a-entity id="room-options2" position="0.7 0 0" scale="0 0 0">
                 <a-entity id="room21" mixin="button" position="0 0.5 0.1">
                     <a-text value="Room21"
                             mixin="text"
@@ -225,7 +225,7 @@
                 </a-entity>
             </a-entity>
 
-            <a-entity id="room-options3" position="0.7 0 0" visible="false">
+            <a-entity id="room-options3" position="0.7 0 0" scale="0 0 0">
                 <a-entity id="room31" mixin="button" position="0 0.5 0.1">
                     <a-text value="Room31"
                             mixin="text"

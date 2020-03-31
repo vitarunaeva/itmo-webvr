@@ -11,6 +11,10 @@ AFRAME.registerComponent("spot", {
   },
   events: {
     click: function(e) {
+      if (e.target.localName !== 'a-image') {
+        makeButtonActive(e);
+      }
+
       let sky = document.getElementById("skyBox");
       let spotComp = document.getElementById("spots");
       let currSpots = this.data.currSpots || e.target.parentElement.getAttribute("id");
@@ -25,3 +29,16 @@ AFRAME.registerComponent("spot", {
     }
   }
 });
+
+function makeButtonActive(event) {
+  const campusesArray = Array.prototype.slice.call(document.querySelectorAll('a-entity[spot]'));
+  const activeElement = campusesArray.find(item => item.className.split().includes('active'));
+
+  if (activeElement) {
+    activeElement.classList.remove("active");
+    activeElement.setAttribute('material', 'color', INACTIVE_BACKGROUND_COLOR);
+  }
+
+  event.target.classList.add('active');
+  event.target.setAttribute('material', 'color', ACTIVE_BACKGROUND_COLOR);
+}

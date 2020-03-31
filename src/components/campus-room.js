@@ -8,7 +8,7 @@ AFRAME.registerComponent("campus-room", {
     if (isActive) {
       this.el.setAttribute('material', 'color', ACTIVE_BACKGROUND_COLOR);
       setTimeout(() => {
-        document.getElementById(this.data).object3D.visible = true;
+        document.getElementById(this.data).setAttribute('scale', '1 1 1');
       }, 0)
     }
   },
@@ -21,11 +21,11 @@ AFRAME.registerComponent("campus-room", {
       const activeElementRoom = activeElement.getAttribute('campus-room');
       const campusRoom = event.target.getAttribute('campus-room');
 
-      document.getElementById(activeElementRoom).object3D.visible = false;
+      document.getElementById(activeElementRoom).setAttribute('scale', '0 0 0');
       activeElement.classList.remove("active");
       activeElement.setAttribute('material', 'color', INACTIVE_BACKGROUND_COLOR);
 
-      document.getElementById(campusRoom).object3D.visible = true;
+      document.getElementById(campusRoom).setAttribute('scale', '1 1 1');
       event.target.classList.add('active');
       event.target.setAttribute('material', 'color', ACTIVE_BACKGROUND_COLOR);
     }

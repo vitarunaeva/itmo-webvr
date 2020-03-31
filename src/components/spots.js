@@ -4,8 +4,8 @@ AFRAME.registerComponent("spots", {
       let currspotGroup = document.getElementById(evt.detail.currSpots);
       let newspotGroup = document.getElementById(evt.detail.newSpots);
 
-      currspotGroup.object3D.visible = false;
-      newspotGroup.object3D.visible = true;
+      currspotGroup.setAttribute('scale', '0 0 0');
+      newspotGroup.setAttribute('scale', '1 1 1');
     }
   }
 });
