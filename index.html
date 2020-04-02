@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <title>360° Image Browser</title>
+    <meta charset="UTF-8">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <!--animation component script-->
     <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
@@ -16,6 +17,7 @@
 <body>
 <a-scene>
     <a-assets>
+        <!-- Mixins -->
         <a-mixin id="text"
                  text="align: center; width: 6"
                  material="color: #EC0B43">
@@ -26,47 +28,44 @@
                  material="color: white">
         </a-mixin>
 
-        <a-mixin id="hoverColor" event-set__mouseenter="material.color: #CC435F"></a-mixin>
-        <a-mixin id="selectColor" event-set__click="material.color: #876A96"></a-mixin>
+            <!-- Audio -->
+            <audio id="click-sound"
+                   src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg">
+            </audio>
 
-        <audio id="click-sound"
-               src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg">
-        </audio>
+            <audio  id="hover-sound"
+                    src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fhover.ogg?v=1585432296309">
+            </audio>
 
-        <audio  id="hover-sound"
-                src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fhover.ogg?v=1585432296309">
-        </audio>
+            <!-- Images. -->
+            <img id="main-entrance" src="./assets/photo1.jpg" />
 
-        <!-- Images. -->
-        <img id="main-entrance" src="./assets/photo1.jpg" />
+            <img  id="main-entrance__point2" src="./assets/photo2.jpg" />
 
-        <img  id="main-entrance__point2" src="./assets/photo2.jpg" />
+            <img id="dining-room" src="./assets/photo3.jpg" />
 
-        <img id="dining-room" src="./assets/photo3.jpg" />
+            <img id="gym" src="./assets/photo4.jpg" />
 
-        <img id="gym" src="./assets/photo4.jpg" />
+            <img id="hotspot"
+                 width="100"
+                 height="100"
+                 src="./assets/hotspot.png" />
 
-        <img id="hotspot"
-             width="100"
-             height="100"
-             src="./assets/hotspot.png" />
-
-        <img id="close-icon"
-             width="100"
-             height="100"
-             src="./assets/cancel-black-18dp%20(1).svg" />
+            <img id="close-icon"
+                 width="100"
+                 height="100"
+                 src="./assets/cancel-black-18dp%20(1).svg" />
     </a-assets>
 
     <a-sky id="skyBox" radius="10" src="#main-entrance"></a-sky>
 
     <a-entity camera look-controls position="0 -3 0">
-           <!-- исправить fuseTimeout -->
-          <a-entity cursor="fuse: true; fuseTimeout: 500;"
-                    position="0 0 -1"
-                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                    material="color: black; shader: flat">
-          </a-entity>
+        <a-entity cursor="fuse: true; fuseTimeout: 500;"
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                  material="color: black; shader: flat">
         </a-entity>
+    </a-entity>
 
     <a-entity id="spots" spots>
         <a-entity id="group-point1">
@@ -84,9 +83,7 @@
               position="0 -1.5 -3"
               material="color: #ec0b43"
               mixin="button hoverColor selectColor">
-        <a-text id="menu-button-label" value="меню2" position="-0.3 0 0"></a-text>
-
-        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Via URL."></a-entity>
+        <a-text id="menu-button-label" value="Меню" position="-0.3 0 0" negate="false" font="./assets/Roboto-Medium-msdf.json"></a-text>
     </a-entity>
 
     <!--Меню-->
@@ -97,6 +94,7 @@
              color="#808080"
              opacity="0.9"
              position="0 -3 -1.8">
+
         <a-image id="closeButton"
                  close-button
                  width="0.2"
@@ -108,7 +106,7 @@
         <a-entity id="campus">
             <a-text id="campus-label"
                     mixin="text"
-                    value="Campus"
+                    value="Корпуса"
                     position="-0.8 1 0"
                     wrap-count="52"
                     color="black">
@@ -119,7 +117,7 @@
                           class="active"
                           position="0 0.5 0.1"
                           campus-room="room-options1">
-                    <a-text value="Main Campus"
+                    <a-text value="Кронверский"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
@@ -128,7 +126,7 @@
                 </a-entity>
 
                 <a-entity id="campus2" mixin="button" position="0 0 0.1" campus-room="room-options2">
-                    <a-text value="Campus2"
+                    <a-text value="Вяземский пер."
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
@@ -140,7 +138,7 @@
                           mixin="button"
                           position="0 -0.5 0.1"
                           campus-room="room-options3">
-                    <a-text value="Campus3"
+                    <a-text value="Пер. Гривцова"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
@@ -153,7 +151,7 @@
         <a-entity id="room">
             <a-text id="room-label"
                     mixin="text"
-                    value="Room"
+                    value="Помещения"
                     position="0.7 1 0"
                     wrap-count="52"
                     color="black">
@@ -161,8 +159,8 @@
 
             <a-entity id="room-options1" position="0.7 0 0" scale="0 0 0">
                 <a-entity id="room1" mixin="button" position="0 0.5 0.1"
-                 spot="linkTo:#main-entrance__point2; spotGroup:group-point2; currSpots:group-point1">
-                    <a-text value="Room1"
+                          spot="linkTo:#main-entrance__point2; spotGroup:group-point2; currSpots:group-point1">
+                    <a-text value="Главный вход (Внешний)"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
@@ -171,8 +169,8 @@
                 </a-entity>
 
                 <a-entity id="room2" mixin="button" position="0 0 0.1"
-                 spot="linkTo:#main-entrance; spotGroup:group-point1; currSpots: group-point2">
-                    <a-text value="Room2"
+                          spot="linkTo:#main-entrance; spotGroup:group-point1; currSpots: group-point2">
+                    <a-text value="Главный вход (Внутренний)"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
