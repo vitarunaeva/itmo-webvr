@@ -6,8 +6,11 @@ AFRAME.registerComponent("spot", {
   init: function() {
     // Добавление источника изображения горячих точек
     this.el.setAttribute("src", "#hotspot");
-    // Делает иконку, реагирующую на вгляд пользователя
-    this.el.setAttribute("look-at", "#camera");
+
+    // Делает иконку (только из списка #spots), реагирующую на вгляд пользователя
+    if (this.el.localName === 'a-image') {
+      this.el.setAttribute("look-at", "#camera");
+    }
   },
   events: {
     click: function(e) {
