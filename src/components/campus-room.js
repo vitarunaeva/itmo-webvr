@@ -13,7 +13,7 @@ AFRAME.registerComponent("campus-room", {
     }
   },
   events: {
-    mouseenter: function(event){
+    mouseenter: function(event) {
       if (event.target.className.split().includes('active')) return;
 
       Array.prototype.slice.call(document.querySelectorAll('a-entity[spot]')).forEach(el => {

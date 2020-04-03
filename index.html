@@ -83,7 +83,11 @@
               position="0 -1.5 -3"
               material="color: #ec0b43"
               mixin="button hoverColor selectColor">
-        <a-text id="menu-button-label" value="Меню" position="-0.3 0 0" negate="false" font="./assets/Roboto-Medium-msdf.json"></a-text>
+        <a-text id="menu-button-label"
+                value="Меню"
+                position="-0.3 0 0"
+                negate="false"
+                font="./assets/Roboto-Medium-msdf.json"></a-text>
     </a-entity>
 
     <!--Меню-->
@@ -95,18 +99,21 @@
              opacity="0.9"
              position="0 -3 -1.8">
 
-        <a-image id="closeButton"
-                 close-button
-                 width="0.2"
-                 height="0.2"
-                 position="1.2 0.95 0.1"
-                 src="#close-icon">
-        </a-image>
+        <a-entity id="closeButton" close-button>
+            <a-image material="alphaTest: 0.5"
+                     width="0.2"
+                     height="0.2"
+                     position="1.2 0.95 0.1"
+                     src="#close-icon">
+            </a-image>
+        </a-entity>
 
         <a-entity id="campus">
             <a-text id="campus-label"
                     mixin="text"
                     value="Корпуса"
+                    negate="false"
+                    font="./assets/Roboto-Medium-msdf.json"
                     position="-0.8 1 0"
                     wrap-count="52"
                     color="black">
@@ -119,6 +126,8 @@
                           campus-room="room-options1">
                     <a-text value="Кронверский"
                             mixin="text"
+                            negate="false"
+                            font="./assets/Roboto-Medium-msdf.json"
                             position="0 0 0"
                             wrap-count="80"
                             color="#EC0B43"
@@ -128,6 +137,8 @@
                 <a-entity id="campus2" mixin="button" position="0 0 0.1" campus-room="room-options2">
                     <a-text value="Вяземский пер."
                             mixin="text"
+                            negate="false"
+                            font="./assets/Roboto-Medium-msdf.json"
                             position="0 0 0"
                             wrap-count="80"
                             color="#EC0B43">
@@ -139,6 +150,8 @@
                           position="0 -0.5 0.1"
                           campus-room="room-options3">
                     <a-text value="Пер. Гривцова"
+                            negate="false"
+                            font="./assets/Roboto-Medium-msdf.json"
                             mixin="text"
                             position="0 0 0"
                             wrap-count="80"
@@ -152,6 +165,8 @@
             <a-text id="room-label"
                     mixin="text"
                     value="Помещения"
+                    negate="false"
+                    font="./assets/Roboto-Medium-msdf.json"
                     position="0.7 1 0"
                     wrap-count="52"
                     color="black">
@@ -162,6 +177,8 @@
                           spot="linkTo:#main-entrance__point2; spotGroup:group-point2; currSpots:group-point1">
                     <a-text value="Главный вход (Внешний)"
                             mixin="text"
+                            negate="false"
+                            font="./assets/Roboto-Medium-msdf.json"
                             position="0 0 0"
                             wrap-count="80"
                             color="#EC0B43">
@@ -172,6 +189,8 @@
                           spot="linkTo:#main-entrance; spotGroup:group-point1; currSpots: group-point2">
                     <a-text value="Главный вход (Внутренний)"
                             mixin="text"
+                            negate="false"
+                            font="./assets/Roboto-Medium-msdf.json"
                             position="0 0 0"
                             wrap-count="80"
                             color="#EC0B43">
