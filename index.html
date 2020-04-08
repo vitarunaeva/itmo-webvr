@@ -7,6 +7,7 @@
     <!--animation component script-->
     <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-rounded@1.0.3/dist/aframe-rounded-component.min.js"></script>
 
     <script src="src/components/menu-button.js"></script>
     <script src="src/components/close-button.js"></script>
@@ -69,18 +70,20 @@
     </a-entity>
 
     <!--Кнопка Меню-->
-    <a-entity look-at
-              menu-button
-              id="menu-button"
-              position="0 -1.5 -3"
-              material="color: #ec0b43"
-              mixin="button hoverColor selectColor">
+    <a-rounded look-at
+               menu-button
+               id="menu-button"
+               position="-0.6 -2.3 -3"
+               height="0.4"
+               width="1.2"
+               color="#ec0b43"
+               radius="0.05">
         <a-text id="menu-button-label"
                 value="Меню"
-                position="-0.3 0 0"
+                position="0.33 0.22 0"
                 negate="false"
                 font="./assets/Roboto-Medium-msdf.json"></a-text>
-    </a-entity>
+    </a-rounded>
 
     <!--Меню-->
     <a-plane id="menu"
