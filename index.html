@@ -29,33 +29,33 @@
                  material="color: white">
         </a-mixin>
 
-            <!-- Audio -->
-            <audio id="click-sound"
-                   src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg">
-            </audio>
+        <!-- Audio -->
+        <audio id="click-sound"
+               src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg">
+        </audio>
 
-            <audio  id="hover-sound"
-                    src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fhover.ogg?v=1585432296309">
-            </audio>
+        <audio id="hover-sound"
+               src="https://cdn.glitch.com/ecc1f35c-4fe9-4706-9469-d40abe5241ac%2Fhover.ogg?v=1585432296309">
+        </audio>
 
-            <!-- Images. -->
-            <img id="main-entrance" src="./assets/photo1.jpg" />
+        <!-- Images. -->
+        <img id="main-entrance" src="./assets/photo1.jpg"/>
 
-            <img  id="main-entrance__point2" src="./assets/photo2.jpg" />
+        <img id="main-entrance__point2" src="./assets/photo2.jpg"/>
 
-            <img id="dining-room" src="./assets/photo3.jpg" />
+        <img id="dining-room" src="./assets/photo3.jpg"/>
 
-            <img id="gym" src="./assets/photo4.jpg" />
+        <img id="gym" src="./assets/photo4.jpg"/>
 
-            <img id="hotspot"
-                 width="100"
-                 height="100"
-                 src="./assets/hotspot.png" />
+        <img id="hotspot"
+             width="100"
+             height="100"
+             src="./assets/hotspot.png"/>
 
-            <img id="close-icon"
-                 width="100"
-                 height="100"
-                 src="./assets/cancel-black-18dp%20(1).svg" />
+        <img id="close-icon"
+             width="100"
+             height="100"
+             src="./assets/cancel-black-18dp%20(1).svg"/>
     </a-assets>
 
     <a-sky id="skyBox" radius="10" src="#main-entrance"></a-sky>
@@ -109,50 +109,60 @@
                     value="Корпуса"
                     negate="false"
                     font="./assets/Roboto-Medium-msdf.json"
-                    position="-0.8 1 0"
+                    position="-0.75 0.9 0"
                     wrap-count="52"
                     color="black">
             </a-text>
             <a-entity id="campus-options" position="-0.7 0 0">
-                <a-entity id="1"
-                          mixin="button"
-                          class="active"
-                          position="0 0.5 0.1"
-                          campus-room="room-options1">
+                <a-rounded id="1"
+                           class="active"
+                           position="-0.5 0.3 0.1"
+                           width="1"
+                           height="0.3"
+                           radius="0.05"
+                           opacity="0.9"
+                           campus-room="room-options1">
                     <a-text value="Кронверский"
                             mixin="text"
                             negate="false"
                             font="./assets/Roboto-Medium-msdf.json"
-                            position="0 0 0"
+                            position="0.5 0.17 0"
                             wrap-count="80"
                             color="#EC0B43"
                     ></a-text>
-                </a-entity>
+                </a-rounded>
 
-                <a-entity id="campus2" mixin="button" position="0 0 0.1" campus-room="room-options2">
+                <a-rounded id="campus2"
+                           position="-0.5 -0.2 0.1"
+                           width="1"
+                           height="0.3"
+                           radius="0.05"
+                           campus-room="room-options2">
                     <a-text value="Вяземский пер."
                             mixin="text"
                             negate="false"
                             font="./assets/Roboto-Medium-msdf.json"
-                            position="0 0 0"
+                            position="0.5 0.17 0"
                             wrap-count="80"
                             color="#EC0B43">
                     </a-text>
-                </a-entity>
+                </a-rounded>
 
-                <a-entity id="campus3"
-                          mixin="button"
-                          position="0 -0.5 0.1"
-                          campus-room="room-options3">
+                <a-rounded id="campus3"
+                           width="1"
+                           height="0.3"
+                           radius="0.05"
+                           position="-0.5 -0.7 0.1"
+                           campus-room="room-options3">
                     <a-text value="Пер. Гривцова"
                             negate="false"
                             font="./assets/Roboto-Medium-msdf.json"
                             mixin="text"
-                            position="0 0 0"
+                            position="0.5 0.17 0"
                             wrap-count="80"
                             color="#EC0B43">
                     </a-text>
-                </a-entity>
+                </a-rounded>
             </a-entity>
         </a-entity>
 
@@ -162,110 +172,139 @@
                     value="Помещения"
                     negate="false"
                     font="./assets/Roboto-Medium-msdf.json"
-                    position="0.7 1 0"
+                    position="0.7 0.9 0"
                     wrap-count="52"
                     color="black">
             </a-text>
 
-            <a-entity id="room-options1" position="0.7 0 0" scale="0 0 0">
-                <a-entity id="room1" mixin="button" position="0 0.5 0.1"
-                          spot="linkTo:#main-entrance__point2; spotGroup:group-point2; currSpots:group-point1">
-                    <a-text value="Главный вход (Внешний)"
+            <a-entity id="room-options1" position="0 0 0" scale="0 0 0">
+                <a-rounded id="room1"
+                           position="0.2 0.3 0.1"
+                           width="1"
+                           height="0.3"
+                           radius="0.05"
+                           spot="linkTo:#main-entrance__point2; spotGroup:group-point2; currSpots:group-point1">
+                    <a-text value="Главный вход"
                             mixin="text"
                             negate="false"
                             font="./assets/Roboto-Medium-msdf.json"
-                            position="0 0 0"
+                            position="0.45 0.14 0.1"
                             wrap-count="80"
                             color="#EC0B43">
                     </a-text>
-                </a-entity>
+                </a-rounded>
 
-                <a-entity id="room2" mixin="button" position="0 0 0.1"
-                          spot="linkTo:#main-entrance; spotGroup:group-point1; currSpots: group-point2">
-                    <a-text value="Главный вход (Внутренний)"
+                <a-rounded id="room2"
+                           position="0.2 -0.2 0.1"
+                           width="1"
+                           height="0.3"
+                           radius="0.05"
+                           spot="linkTo:#main-entrance; spotGroup:group-point1; currSpots: group-point2">
+                    <a-text value="Ректорский \nхолл"
                             mixin="text"
                             negate="false"
                             font="./assets/Roboto-Medium-msdf.json"
-                            position="0 0 0"
+                            position="0.45 0.16 0.1"
                             wrap-count="80"
                             color="#EC0B43">
                     </a-text>
-                </a-entity>
+                </a-rounded>
 
-                <a-entity id="room3"
-                          mixin="button"
-                          position="0 -0.5 0.1"
-                          spot="linkTo:#dining-room; spotGroup:group-point2; currSpots: group-point1"
+                <a-rounded id="room3"
+                           position="0.2 -0.7 0.1"
+                           width="1"
+                           height="0.3"
+                           radius="0.05"
+                           spot="linkTo:#dining-room; spotGroup:group-point2; currSpots: group-point1"
                 >
-                    <a-text value="Room3"
+                    <a-text value="Столовая"
                             mixin="text"
-                            position="0 0 0"
+                            position="0.45 0.2 0.1"
                             wrap-count="80"
+                            negate="false"
+                            font="./assets/Roboto-Medium-msdf.json"
                             color="#EC0B43">
                     </a-text>
-                </a-entity>
+                </a-rounded>
             </a-entity>
 
             <a-entity id="room-options2" position="0.7 0 0" scale="0 0 0">
-                <a-entity id="room21" mixin="button" position="0 0.5 0.1">
-                    <a-text value="Room21"
+                <a-rounded id="room21"
+                           position="-0.5 0.3 0.1"
+                           width="1"
+                           height="0.3"
+                           radius="0.05">
+                    <a-text value="Спортивный \nзал"
                             mixin="text"
-                            position="0 0 0"
+                            position="0.45 0.14 0.1"
                             wrap-count="80"
+                            negate="false"
+                            font="./assets/Roboto-Medium-msdf.json"
                             color="#EC0B43">
                     </a-text>
-                </a-entity>
+                </a-rounded>
 
-                <a-entity id="room22" mixin="button" position="0 0 0.1">
-                    <a-text   value="Room22"
-                              mixin="text"
-                              position="0 0 0"
-                              wrap-count="80"
-                              color="#EC0B43">
-                    </a-text>
-                </a-entity>
-
-                <a-entity id="room23"
-                          mixin="button"
-                          position="0 -0.5 0.1">
-                    <a-text value="Room23"
+                <a-rounded id="room22"
+                           width="1"
+                           height="0.3"
+                           radius="0.05"
+                           position="-0.5 -0.2 0.1">
+                    <a-text value="Комната"
                             mixin="text"
-                            position="0 0 0"
+                            position="0.45 0.18 0.1"
                             wrap-count="80"
+                            negate="false"
+                            font="./assets/Roboto-Medium-msdf.json"
                             color="#EC0B43">
                     </a-text>
-                </a-entity>
+                </a-rounded>
+
+                <a-rounded id="room23"
+                           position="-0.5 -0.7 0.1"
+                           width="1"
+                           height="0.3"
+                           radius="0.05">
+                    <a-text value="Кухня"
+                            mixin="text"
+                            position="0.45 0.2 0.1"
+                            wrap-count="80"
+                            negate="false"
+                            font="./assets/Roboto-Medium-msdf.json"
+                            color="#EC0B43">
+                    </a-text>
+                </a-rounded>
             </a-entity>
 
             <a-entity id="room-options3" position="0.7 0 0" scale="0 0 0">
-                <a-entity id="room31" mixin="button" position="0 0.5 0.1">
-                    <a-text value="Room31"
+                <a-rounded id="room31"
+                           position="-0.5 0.3 0.1"
+                           width="1"
+                           height="0.3"
+                           radius="0.05">
+                    <a-text value="Лаборатория \nлазерной гравировки"
                             mixin="text"
-                            position="0 0 0"
-                            wrap-count="80"
+                            position="0.45 0.14 0.1"
+                            wrap-count="110"
+                            negate="false"
+                            font="./assets/Roboto-Medium-msdf.json"
                             color="#EC0B43">
                     </a-text>
-                </a-entity>
+                </a-rounded>
 
-                <a-entity id="room32" mixin="button" position="0 0 0.1">
-                    <a-text value="Room32"
+                <a-rounded id="room32"
+                           position="-0.5 -0.2 0.1"
+                           width="1"
+                           height="0.3"
+                           radius="0.05">
+                    <a-text value="Лаборатория \nнанотехнологий"
                             mixin="text"
-                            position="0 0 0"
-                            wrap-count="80"
+                            position="0.45 0.17 0.1"
+                            wrap-count="110"
+                            negate="false"
+                            font="./assets/Roboto-Medium-msdf.json"
                             color="#EC0B43">
                     </a-text>
-                </a-entity>
-
-                <a-entity id="room33"
-                          mixin="button"
-                          position="0 -0.5 0.1">
-                    <a-text value="Room33"
-                            mixin="text"
-                            position="0 0 0"
-                            wrap-count="80"
-                            color="#EC0B43">
-                    </a-text>
-                </a-entity>
+                </a-rounded>
             </a-entity>
         </a-entity>
     </a-plane>

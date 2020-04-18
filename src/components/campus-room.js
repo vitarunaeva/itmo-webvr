@@ -16,7 +16,7 @@ AFRAME.registerComponent("campus-room", {
     mouseenter: function(event) {
       if (event.target.className.split().includes('active')) return;
 
-      Array.prototype.slice.call(document.querySelectorAll('a-entity[spot]')).forEach(el => {
+      Array.prototype.slice.call(document.querySelectorAll('a-rounded[spot]')).forEach(el => {
         el.classList.remove("active");
         el.setAttribute('material', 'color', INACTIVE_BACKGROUND_COLOR);
       });

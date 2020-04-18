@@ -34,7 +34,7 @@ AFRAME.registerComponent("spot", {
 });
 
 function makeButtonActive(event) {
-  const campusesArray = Array.prototype.slice.call(document.querySelectorAll('a-entity[spot]'));
+  const campusesArray = Array.prototype.slice.call(document.querySelectorAll('a-rounded[spot]'));
   const activeElement = campusesArray.find(item => item.className.split().includes('active'));
 
   if (activeElement) {
