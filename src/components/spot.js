@@ -11,6 +11,15 @@ AFRAME.registerComponent("spot", {
     if (this.el.localName === 'a-image') {
       this.el.setAttribute("look-at", "#camera");
     }
+
+    if (this.el.localName !== 'a-image') {
+      const isActive = this.el.className.split().includes('active');
+      console.log('this.el', this.el)
+
+      if (isActive) {
+        this.el.setAttribute('material', 'color', ACTIVE_BACKGROUND_COLOR);
+      }
+    }
   },
   events: {
     click: function(e) {

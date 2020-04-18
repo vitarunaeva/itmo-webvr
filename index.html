@@ -42,6 +42,16 @@
 
         <img id="gym" src="./assets/photo4.jpg"/>
 
+        <img id="rectors-hall" src="./assets/photo5.jpg"/>
+
+        <img id="laser-lab" src="./assets/photo6.jpg"/>
+
+        <img id="nanotechnology-lab" src="./assets/photo7.jpg"/>
+
+        <img id="dorm-room" src="./assets/photo8.jpg"/>
+
+        <img id="dorm-dining" src="./assets/photo9.jpg"/>
+
         <img id="hotspot"
              width="100"
              height="100"
@@ -174,11 +184,12 @@
 
             <a-entity id="room-options1" position="0 0 0" scale="0 0 0">
                 <a-rounded id="room1"
+                           class="active"
                            position="0.2 0.3 0.1"
                            width="1"
                            height="0.3"
                            radius="0.05"
-                           spot="linkTo:#main-entrance__point2; spotGroup:group-point2; currSpots:group-point1">
+                           spot="linkTo:#main-entrance; spotGroup:group-point1; currSpots: group-point2">
                     <a-text value="Главный вход"
                             mixin="text"
                             negate="false"
@@ -194,7 +205,7 @@
                            width="1"
                            height="0.3"
                            radius="0.05"
-                           spot="linkTo:#main-entrance; spotGroup:group-point1; currSpots: group-point2">
+                           spot="linkTo:#rectors-hall; spotGroup:group-point1; currSpots: group-point2">
                     <a-text value="Ректорский \nхолл"
                             mixin="text"
                             negate="false"
@@ -210,8 +221,7 @@
                            width="1"
                            height="0.3"
                            radius="0.05"
-                           spot="linkTo:#dining-room; spotGroup:group-point2; currSpots: group-point1"
-                >
+                           spot="linkTo:#dining-room; spotGroup:group-point2; currSpots: group-point1">
                     <a-text value="Столовая"
                             mixin="text"
                             position="0.45 0.2 0.1"
@@ -228,7 +238,8 @@
                            position="-0.5 0.3 0.1"
                            width="1"
                            height="0.3"
-                           radius="0.05">
+                           radius="0.05"
+                           spot="linkTo:#gym; spotGroup:group-point1; currSpots: group-point2">
                     <a-text value="Спортивный \nзал"
                             mixin="text"
                             position="0.45 0.14 0.1"
@@ -243,7 +254,8 @@
                            width="1"
                            height="0.3"
                            radius="0.05"
-                           position="-0.5 -0.2 0.1">
+                           position="-0.5 -0.2 0.1"
+                           spot="linkTo:#dorm-room; spotGroup:group-point1; currSpots: group-point2">
                     <a-text value="Комната"
                             mixin="text"
                             position="0.45 0.18 0.1"
@@ -258,7 +270,8 @@
                            position="-0.5 -0.7 0.1"
                            width="1"
                            height="0.3"
-                           radius="0.05">
+                           radius="0.05"
+                           spot="linkTo:#dorm-dining; spotGroup:group-point1; currSpots: group-point2">
                     <a-text value="Кухня"
                             mixin="text"
                             position="0.45 0.2 0.1"
@@ -275,7 +288,8 @@
                            position="-0.5 0.3 0.1"
                            width="1"
                            height="0.3"
-                           radius="0.05">
+                           radius="0.05"
+                           spot="linkTo:#laser-lab; spotGroup:group-point1; currSpots: group-point2">
                     <a-text value="Лаборатория \nлазерной гравировки"
                             mixin="text"
                             position="0.45 0.14 0.1"
@@ -290,7 +304,8 @@
                            position="-0.5 -0.2 0.1"
                            width="1"
                            height="0.3"
-                           radius="0.05">
+                           radius="0.05"
+                           spot="linkTo:#nanotechnology-lab; spotGroup:group-point1; currSpots: group-point2">
                     <a-text value="Лаборатория \nнанотехнологий"
                             mixin="text"
                             position="0.45 0.17 0.1"
