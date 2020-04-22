@@ -82,12 +82,15 @@
                height="0.4"
                width="1.2"
                color="#ec0b43"
-               radius="0.05">
+               radius="0.05"
+               animation="property: scale; from: 1 1 1; to: 1.05 1.05 1.05; dur: 2000; dir: reverse; easing: easeInOutCirc; loop: true">
         <a-text id="menu-button-label"
                 value="Меню"
                 position="0.33 0.22 0"
                 negate="false"
                 font="./assets/Roboto-Medium-msdf.json"></a-text>
+        <a-animation attribute="scale" dur="1000" from="1 1 1" to="3 3 3" direction="alternate-reverse"
+                     easing="ease-in-out-circ" repeat="indefinite"></a-animation>
     </a-rounded>
 
     <!--Меню-->
