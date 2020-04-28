@@ -18,6 +18,7 @@ AFRAME.registerComponent("spot", {
 
       if (isActive) {
         this.el.setAttribute('material', 'color', ACTIVE_BACKGROUND_COLOR);
+        this.el.querySelector('a-text').setAttribute('color', ACTIVE_TEXT_COLOR);
       }
     }
   },
@@ -49,8 +50,10 @@ function makeButtonActive(event) {
   if (activeElement) {
     activeElement.classList.remove("active");
     activeElement.setAttribute('material', 'color', INACTIVE_BACKGROUND_COLOR);
+    activeElement.querySelector('a-text').setAttribute('color', INACTIVE_TEXT_COLOR);
   }
 
   event.target.classList.add('active');
   event.target.setAttribute('material', 'color', ACTIVE_BACKGROUND_COLOR);
+  event.target.querySelector('a-text').setAttribute('color', ACTIVE_TEXT_COLOR);
 }
